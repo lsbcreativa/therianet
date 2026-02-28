@@ -42,12 +42,15 @@ export default function Layout({ children }) {
 
         <div className="sidebar-bottom">
           <div className="sidebar-user">
-            <div className="sidebar-user-avatar">
-              {user?.avatar ? (
-                <img src={user.avatar} alt={user.username} className="sidebar-user-avatar-img" />
-              ) : (
-                <span>{initial}</span>
-              )}
+            <div className="sidebar-user-avatar-wrapper">
+              <div className="sidebar-user-avatar">
+                {user?.avatar ? (
+                  <img src={user.avatar} alt={user.username} className="sidebar-user-avatar-img" />
+                ) : (
+                  <span>{initial}</span>
+                )}
+              </div>
+              <span className="sidebar-online-dot" />
             </div>
             <div className="sidebar-user-info">
               <span className="sidebar-user-name">{user?.username}</span>

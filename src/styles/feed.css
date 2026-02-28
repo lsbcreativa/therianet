@@ -1,5 +1,5 @@
 .feed-page {
-  animation: page-enter 0.35s var(--ease-out-expo) forwards;
+  animation: page-enter 0.25s ease forwards;
 }
 
 /* ── Welcome banner ── */
@@ -20,7 +20,7 @@
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 700;
-  background: linear-gradient(135deg, var(--accent), #22d3ee);
+  background: linear-gradient(135deg, var(--accent), #FBBF24);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -33,39 +33,11 @@
   border-radius: var(--radius-lg);
   padding: 20px;
   margin-bottom: 24px;
-  box-shadow: var(--card-shadow);
-  transition: border-color 0.2s, box-shadow 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.post-form::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
+  transition: border-color 0.15s;
 }
 
 .post-form:focus-within {
-  border-color: var(--border-hover);
-}
-
-.post-form:focus-within::before {
-  opacity: 1;
-}
-
-.post-form-flash {
-  animation: form-flash 0.8s ease;
-}
-
-@keyframes form-flash {
-  0%, 100% { box-shadow: var(--card-shadow); }
-  50% { box-shadow: var(--card-shadow), 0 0 24px rgba(0, 212, 255, 0.15); }
+  border-color: rgba(245, 158, 11, 0.12);
 }
 
 .post-form-header {
@@ -85,8 +57,8 @@
   width: var(--avatar-sm);
   height: var(--avatar-sm);
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--bg-tertiary), rgba(0, 212, 255, 0.12));
-  border: 1.5px solid rgba(0, 212, 255, 0.15);
+  background: var(--bg-tertiary);
+  border: 1.5px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +90,6 @@
   font-size: 0.95rem;
   padding: 6px 0;
   resize: none;
-  transition: all 0.2s;
   line-height: 1.5;
 }
 
@@ -130,6 +101,49 @@
   color: var(--text-muted);
 }
 
+/* ── Image preview ── */
+.post-form-image-preview {
+  position: relative;
+  margin-top: 12px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  max-height: 240px;
+}
+
+.post-form-image-preview img {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius);
+}
+
+.post-form-image-remove {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.post-form-image-remove:hover {
+  background: rgba(244, 33, 46, 0.8);
+}
+
+.post-form-image-input {
+  display: none;
+}
+
+/* ── Footer ── */
 .post-form-footer {
   display: flex;
   justify-content: space-between;
@@ -139,11 +153,34 @@
   border-top: 1px solid var(--border);
 }
 
+.post-form-footer-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-attach {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  padding: 6px;
+  border-radius: var(--radius);
+  transition: color 0.15s, background 0.15s;
+}
+
+.btn-attach:hover {
+  color: var(--accent);
+  background: rgba(255, 255, 255, 0.04);
+}
+
 .char-count {
   font-size: 0.75rem;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
-  transition: color 0.2s;
+  transition: color 0.15s;
 }
 
 .char-count.warn {
@@ -159,31 +196,24 @@
   align-items: center;
   gap: 6px;
   padding: 10px 28px;
-  background: linear-gradient(135deg, var(--accent), #00b8db);
-  color: #080d1a;
+  background: linear-gradient(135deg, var(--accent), #D97706);
+  color: #000000;
   border: none;
   border-radius: var(--radius);
   font-size: 0.875rem;
   font-weight: 700;
-  transition: all 0.25s;
+  transition: background 0.15s, box-shadow 0.15s;
   letter-spacing: 0.2px;
 }
 
 .btn-post:hover {
-  background: linear-gradient(135deg, #00e0ff, var(--accent));
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.25);
-  transform: translateY(-1px);
-}
-
-.btn-post:active {
-  transform: translateY(0);
+  background: linear-gradient(135deg, #D97706, var(--accent));
+  box-shadow: 0 0 12px rgba(245, 158, 11, 0.15);
 }
 
 .btn-post:disabled {
   opacity: 0.25;
   cursor: not-allowed;
-  box-shadow: none;
-  transform: none;
 }
 
 /* ── Tabs ── */
@@ -204,7 +234,7 @@
   color: var(--text-muted);
   font-size: 0.85rem;
   font-weight: 600;
-  transition: color 0.2s;
+  transition: color 0.15s;
   cursor: pointer;
   position: relative;
   z-index: 1;
@@ -228,7 +258,11 @@
   background: var(--accent);
   border-radius: 2px 2px 0 0;
   transition: transform 0.3s var(--ease-out-expo);
-  box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+/* ── Tab content transition ── */
+.feed-posts-container {
+  animation: tab-fade 0.25s ease;
 }
 
 /* ── Empty state ── */

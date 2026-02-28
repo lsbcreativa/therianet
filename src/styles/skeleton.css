@@ -1,0 +1,69 @@
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-elevated) 50%, var(--bg-tertiary) 75%);
+  background-size: 400% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius);
+}
+
+.skeleton-text {
+  height: 14px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+.skeleton-text-short {
+  width: 60%;
+}
+
+.skeleton-text-long {
+  width: 90%;
+}
+
+.skeleton-avatar {
+  width: var(--avatar-sm);
+  height: var(--avatar-sm);
+  border-radius: 50%;
+}
+
+.skeleton-avatar-lg {
+  width: var(--avatar-xl);
+  height: var(--avatar-xl);
+  border-radius: 50%;
+}
+
+.skeleton-image {
+  height: 200px;
+  border-radius: var(--radius);
+}
+
+.skeleton-stat {
+  height: 60px;
+  flex: 1;
+  border-radius: var(--radius);
+}
+
+.skeleton-banner {
+  height: var(--profile-banner-height);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.skeleton-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 12px;
+}
+
+.skeleton-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.skeleton-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

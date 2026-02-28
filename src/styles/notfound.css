@@ -6,7 +6,7 @@
   min-height: 100vh;
   text-align: center;
   padding: 20px;
-  animation: page-enter 0.35s var(--ease-out-expo) forwards;
+  animation: page-enter 0.25s ease forwards;
 }
 
 .notfound-icon {
@@ -21,12 +21,8 @@
   font-weight: 700;
   line-height: 1;
   margin-bottom: 8px;
-  background: linear-gradient(135deg, var(--accent), #22d3ee, var(--accent));
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 3s linear infinite;
+  color: var(--accent);
+  text-shadow: 0 0 40px rgba(245, 158, 11, 0.2), 0 0 80px rgba(245, 158, 11, 0.08);
 }
 
 .notfound-text {
@@ -40,21 +36,19 @@
   align-items: center;
   gap: 8px;
   padding: 12px 28px;
-  background: var(--accent-soft);
-  border: 1px solid rgba(0, 212, 255, 0.15);
+  background: transparent;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  color: var(--accent);
+  color: var(--text-primary);
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s;
+  transition: border-color 0.15s, background 0.15s;
 }
 
 .notfound-btn:hover {
-  background: var(--accent-medium);
-  border-color: rgba(0, 212, 255, 0.3);
-  box-shadow: 0 0 16px rgba(0, 212, 255, 0.1);
-  color: var(--accent);
+  background: var(--accent-subtle);
+  border-color: rgba(245, 158, 11, 0.15);
+  color: var(--text-primary);
   text-decoration: none;
-  transform: translateY(-1px);
 }

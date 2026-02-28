@@ -1,10 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../components/Toast';
 import { getPosts, savePosts } from '../utils/storage';
 import { processAvatarFile } from '../utils/avatar';
 import PostCard from '../components/PostCard';
 import '../styles/profile.css';
+import '../styles/skeleton.css';
 
 export default function Profile() {
   const { user, updateProfile } = useAuth();
@@ -13,9 +14,14 @@ export default function Profile() {
   const [editing, setEditing] = useState(false);
   const [bio, setBio] = useState(user?.bio || '');
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState(() =>
     getPosts().filter((p) => p.author === user?.username)
   );
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 400);
+  }, []);
 
   const postCount = posts.length;
   const howlsReceived = posts.reduce((sum, p) => sum + p.howls.length, 0);
@@ -78,6 +84,27 @@ export default function Profile() {
     month: 'long',
   });
 
+  if (loading) {
+    return (
+      <div className="profile-page">
+        <div className="profile-card" style={{ paddingBottom: 32 }}>
+          <div className="skeleton skeleton-banner" />
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: -60 }}>
+            <div className="skeleton skeleton-avatar-lg" />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8, marginTop: 16, padding: '0 24px' }}>
+            <div className="skeleton skeleton-text" style={{ width: '40%' }} />
+            <div className="skeleton skeleton-text" style={{ width: '25%', height: 10 }} />
+          </div>
+          <div style={{ display: 'flex', gap: 12, padding: '20px 24px', justifyContent: 'center' }}>
+            <div className="skeleton skeleton-stat" style={{ maxWidth: 160 }} />
+            <div className="skeleton skeleton-stat" style={{ maxWidth: 160 }} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="profile-page">
       <div className="profile-card">
@@ -86,7 +113,6 @@ export default function Profile() {
         </div>
 
         <div className="profile-avatar-wrapper" onClick={handleAvatarClick}>
-          <div className="profile-avatar-ring" />
           <div className={`profile-avatar ${uploadingAvatar ? 'uploading' : ''}`}>
             {user.avatar ? (
               <img src={user.avatar} alt={user.username} className="profile-avatar-img" />

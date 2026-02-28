@@ -17,24 +17,6 @@ export default function Login() {
 
   return (
     <div className="auth-container">
-      <div className="auth-bg-effects">
-        <div className="auth-orb auth-orb-1" />
-        <div className="auth-orb auth-orb-2" />
-        <div className="auth-orb auth-orb-3" />
-        {Array.from({ length: 20 }, (_, i) => (
-          <div
-            key={i}
-            className="auth-particle"
-            style={{
-              '--x': `${Math.random() * 100}%`,
-              '--delay': `${Math.random() * 8}s`,
-              '--duration': `${6 + Math.random() * 10}s`,
-              '--size': `${2 + Math.random() * 3}px`,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="auth-card">
         <img src="/images/therianet-logo.png" alt="TheriaNet" className="auth-logo" />
         <h1 className="auth-title">TheriaNet</h1>

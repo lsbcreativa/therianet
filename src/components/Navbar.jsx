@@ -16,7 +16,10 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-inner">
-        <Link to="/" className="navbar-brand">TheriaNet</Link>
+        <Link to="/" className="navbar-brand">
+          <img src="/images/therianet-logo.png" alt="TheriaNet" className="navbar-logo" />
+          <span>TheriaNet</span>
+        </Link>
         <div className="navbar-links">
           <NavLink to="/" end className={({ isActive }) => `navbar-link ${isActive ? 'active' : ''}`}>
             Feed

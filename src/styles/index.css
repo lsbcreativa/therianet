@@ -6,21 +6,33 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font);
   background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(0, 212, 255, 0.3);
+  color: white;
 }
 
 a {
   color: var(--accent);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 a:hover {
-  text-decoration: underline;
+  color: var(--accent-hover);
+  text-decoration: none;
 }
 
 button {
@@ -36,5 +48,5 @@ input, textarea {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 24px 16px;
-  padding-top: calc(var(--navbar-height) + 24px);
+  padding-top: calc(var(--navbar-height) + 32px);
 }

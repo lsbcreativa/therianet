@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import '../styles/postcard.css';
 
@@ -19,12 +20,20 @@ function timeAgo(dateString) {
 
 export default function PostCard({ post, onHowl, onDelete, authorAvatar, index = 0 }) {
   const { user } = useAuth();
+  const [bouncing, setBouncing] = useState(false);
   const isAuthor = user && post.author === user.username;
   const hasHowled = user && post.howls.includes(user.username);
   const initial = post.author.charAt(0).toUpperCase();
 
+  const handleHowlClick = () => {
+    onHowl(post.id);
+    setBouncing(true);
+    setTimeout(() => setBouncing(false), 600);
+  };
+
   return (
     <div className="post-card" style={{ '--i': index }}>
+      <div className="post-card-accent" />
       <div className="post-header">
         <div className="post-avatar">
           {authorAvatar ? (
@@ -43,10 +52,10 @@ export default function PostCard({ post, onHowl, onDelete, authorAvatar, index =
 
       <div className="post-actions">
         <button
-          className={`btn-howl ${hasHowled ? 'howled' : ''}`}
-          onClick={() => onHowl(post.id)}
+          className={`btn-howl ${hasHowled ? 'howled' : ''} ${bouncing ? 'howl-bounce' : ''}`}
+          onClick={handleHowlClick}
         >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill={hasHowled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
+          <svg className="howl-icon" width="16" height="16" viewBox="0 0 24 24" fill={hasHowled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
           </svg>
           {post.howls.length > 0 && <span>{post.howls.length}</span>}

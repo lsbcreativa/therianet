@@ -13,6 +13,7 @@ export default function Feed() {
   const [posts, setPosts] = useState([]);
   const [content, setContent] = useState('');
   const [activeTab, setActiveTab] = useState('all');
+  const [justPosted, setJustPosted] = useState(false);
 
   useEffect(() => {
     setPosts(getPosts());
@@ -37,6 +38,8 @@ export default function Feed() {
 
     sync([newPost, ...posts]);
     setContent('');
+    setJustPosted(true);
+    setTimeout(() => setJustPosted(false), 800);
     addToast('Your howl is out there!');
   };
 
@@ -64,8 +67,13 @@ export default function Feed() {
 
   return (
     <div className="feed-page">
-      <form className="post-form" onSubmit={handleSubmit}>
-        <div className="post-form-body">
+      <div className="feed-welcome">
+        <span className="feed-welcome-label">Welcome back,</span>
+        <span className="feed-welcome-name">{user.username}</span>
+      </div>
+
+      <form className={`post-form ${justPosted ? 'post-form-flash' : ''}`} onSubmit={handleSubmit}>
+        <div className="post-form-header">
           <div className="post-form-avatar">
             {user.avatar ? (
               <img src={user.avatar} alt={user.username} className="post-form-avatar-img" />
@@ -73,6 +81,9 @@ export default function Feed() {
               <span>{initial}</span>
             )}
           </div>
+          <span className="post-form-username">{user.username}</span>
+        </div>
+        <div className="post-form-body">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
@@ -85,6 +96,10 @@ export default function Feed() {
             {content.length}/{MAX_CHARS}
           </span>
           <button type="submit" className="btn-post" disabled={!content.trim()}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="22" y1="2" x2="11" y2="13" />
+              <polygon points="22 2 15 22 11 13 2 9 22 2" />
+            </svg>
             Howl it
           </button>
         </div>
@@ -103,6 +118,10 @@ export default function Feed() {
         >
           My Posts
         </button>
+        <div
+          className="feed-tab-indicator"
+          style={{ transform: `translateX(${activeTab === 'mine' ? '100%' : '0'})` }}
+        />
       </div>
 
       {filteredPosts.length === 0 ? (

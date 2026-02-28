@@ -81,9 +81,12 @@ export default function Profile() {
   return (
     <div className="profile-page">
       <div className="profile-card">
-        <div className="profile-banner" />
+        <div className="profile-banner">
+          <div className="profile-banner-overlay" />
+        </div>
 
         <div className="profile-avatar-wrapper" onClick={handleAvatarClick}>
+          <div className="profile-avatar-ring" />
           <div className={`profile-avatar ${uploadingAvatar ? 'uploading' : ''}`}>
             {user.avatar ? (
               <img src={user.avatar} alt={user.username} className="profile-avatar-img" />
@@ -110,12 +113,11 @@ export default function Profile() {
         <p className="profile-meta">Member since {memberSince}</p>
 
         <div className="profile-stats">
-          <div className="profile-stat">
+          <div className="profile-stat-card">
             <span className="profile-stat-value">{postCount}</span>
             <span className="profile-stat-label">Posts</span>
           </div>
-          <div className="profile-stat-divider" />
-          <div className="profile-stat">
+          <div className="profile-stat-card">
             <span className="profile-stat-value">{howlsReceived}</span>
             <span className="profile-stat-label">Howls received</span>
           </div>

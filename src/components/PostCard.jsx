@@ -17,18 +17,26 @@ function timeAgo(dateString) {
   return 'just now';
 }
 
-export default function PostCard({ post, onHowl, onDelete }) {
+export default function PostCard({ post, onHowl, onDelete, authorAvatar, index = 0 }) {
   const { user } = useAuth();
   const isAuthor = user && post.author === user.username;
   const hasHowled = user && post.howls.includes(user.username);
   const initial = post.author.charAt(0).toUpperCase();
 
   return (
-    <div className="post-card">
+    <div className="post-card" style={{ '--i': index }}>
       <div className="post-header">
-        <div className="post-avatar">{initial}</div>
-        <span className="post-author">{post.author}</span>
-        <span className="post-time">{timeAgo(post.createdAt)}</span>
+        <div className="post-avatar">
+          {authorAvatar ? (
+            <img src={authorAvatar} alt={post.author} className="post-avatar-img" />
+          ) : (
+            initial
+          )}
+        </div>
+        <div className="post-author-group">
+          <span className="post-author">{post.author}</span>
+          <span className="post-time">{timeAgo(post.createdAt)}</span>
+        </div>
       </div>
 
       <p className="post-content">{post.content}</p>
@@ -41,7 +49,7 @@ export default function PostCard({ post, onHowl, onDelete }) {
           <svg width="16" height="16" viewBox="0 0 24 24" fill={hasHowled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2">
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
           </svg>
-          {post.howls.length > 0 && post.howls.length}
+          {post.howls.length > 0 && <span>{post.howls.length}</span>}
         </button>
 
         {isAuthor && (

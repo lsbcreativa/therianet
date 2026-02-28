@@ -13,6 +13,8 @@ export default function Navbar() {
 
   if (!user) return null;
 
+  const initial = user.username.charAt(0).toUpperCase();
+
   return (
     <nav className="navbar">
       <div className="navbar-inner">
@@ -25,6 +27,13 @@ export default function Navbar() {
             Feed
           </NavLink>
           <NavLink to="/profile" className={({ isActive }) => `navbar-link ${isActive ? 'active' : ''}`}>
+            <div className="navbar-avatar">
+              {user.avatar ? (
+                <img src={user.avatar} alt={user.username} className="navbar-avatar-img" />
+              ) : (
+                <span className="navbar-avatar-initial">{initial}</span>
+              )}
+            </div>
             Profile
           </NavLink>
           <button onClick={handleLogout} className="btn-logout">Logout</button>

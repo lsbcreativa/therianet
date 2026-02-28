@@ -19,6 +19,7 @@ export default function Login() {
     <div className="auth-container">
       <form className="auth-form" onSubmit={handleSubmit}>
         <img src="/images/therianet-logo.png" alt="TheriaNet" className="auth-logo" />
+        <h1 className="auth-title">TheriaNet</h1>
         <p className="auth-subtitle">Pick a username to start howling</p>
 
         <div className="form-group">

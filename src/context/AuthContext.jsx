@@ -11,6 +11,7 @@ export function AuthProvider({ children }) {
       id: crypto.randomUUID(),
       username: username.trim(),
       bio: '',
+      avatar: null,
       createdAt: new Date().toISOString(),
     };
     saveUser(newUser);

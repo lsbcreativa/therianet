@@ -4,10 +4,10 @@
   left: 0;
   right: 0;
   height: var(--navbar-height);
-  background: rgba(11, 17, 32, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0, 212, 255, 0.08);
+  background: rgba(8, 13, 26, 0.8);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.06);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -20,18 +20,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 1.1rem;
+  gap: 10px;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text-primary);
   text-decoration: none;
   transition: opacity 0.2s;
+  letter-spacing: -0.3px;
 }
 
 .navbar-brand:hover {
@@ -41,23 +42,27 @@
 }
 
 .navbar-logo {
-  height: 28px;
+  height: 38px;
   width: auto;
 }
 
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 24px;
 }
 
 .navbar-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
   transition: color 0.2s;
   position: relative;
+  padding: 2px 0;
 }
 
 .navbar-link:hover {
@@ -72,19 +77,45 @@
 .navbar-link.active::after {
   content: '';
   position: absolute;
-  bottom: -18px;
+  bottom: -20px;
   left: 0;
   right: 0;
   height: 2px;
   background: var(--accent);
   border-radius: 1px;
+  box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);
+}
+
+.navbar-avatar {
+  width: var(--avatar-xs);
+  height: var(--avatar-xs);
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--bg-tertiary), rgba(0, 212, 255, 0.12));
+  border: 1.5px solid rgba(0, 212, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.navbar-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.navbar-avatar-initial {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent);
 }
 
 .btn-logout {
   background: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: var(--text-muted);
-  padding: 5px 14px;
+  padding: 6px 16px;
   border-radius: var(--radius);
   font-size: 0.8rem;
   font-weight: 500;
@@ -94,5 +125,5 @@
 .btn-logout:hover {
   border-color: var(--danger);
   color: var(--danger);
-  background: rgba(239, 68, 68, 0.08);
+  background: rgba(239, 68, 68, 0.06);
 }
